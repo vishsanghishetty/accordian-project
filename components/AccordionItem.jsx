@@ -2,11 +2,13 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
-export default function AccordionItem({ num, title, text, currOpen, onOpen }) {
+export default function AccordionItem({ num, title, children, currOpen, onOpen }) {
     const isOpen = num === currOpen
+    console.log(num,'===', currOpen, isOpen)
 
     function handleToggle() {
-        onOpen(num)
+        onOpen(isOpen? null : num)
+        console.log(num,'===', currOpen)
     }
     const openStyleBox = isOpen ? 'max-w-lg h-fit' : 'w-4/12 h-24'
     const borderBox = isOpen ? 'border-t-4 border-blue-400' : ''
@@ -26,7 +28,7 @@ export default function AccordionItem({ num, title, text, currOpen, onOpen }) {
                     }
                     
                     </div>
-            {isOpen ? <p className='my-2 font-normal'>{text}</p> : ''}
+            {isOpen ? <p className='my-2 font-normal'>{children}</p> : ''}
             </div>
         </div>
     )
@@ -37,4 +39,5 @@ export default function AccordionItem({ num, title, text, currOpen, onOpen }) {
         text: PropTypes.string.isRequired,
         currOpen: PropTypes.number.isRequired,
         onOpen: PropTypes.func.isRequired,
+        children: PropTypes.string.isRequired
 }
