@@ -2,11 +2,11 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
-export default function AccordianItem({ num, title, text }) {
-    const [isOpen, setIsOpen] = React.useState(false);
+export default function AccordionItem({ num, title, text, currOpen, onOpen }) {
+    const isOpen = num === currOpen
 
     function handleToggle() {
-        setIsOpen(isOpen => !isOpen)
+        onOpen(num)
     }
     const openStyleBox = isOpen ? 'max-w-lg h-fit' : 'w-4/12 h-24'
     const borderBox = isOpen ? 'border-t-4 border-blue-400' : ''
@@ -31,8 +31,10 @@ export default function AccordianItem({ num, title, text }) {
         </div>
     )
 }
-    AccordianItem.propTypes = {
+    AccordionItem.propTypes = {
         num: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
+        text: PropTypes.string.isRequired,
+        currOpen: PropTypes.number.isRequired,
+        onOpen: PropTypes.func.isRequired,
 }

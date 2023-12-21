@@ -1,11 +1,11 @@
 import React from 'react'
-import Accordian from '../components/Accordian'
+import Accordion from '../components/Accordion'
 import questions from '../src/questions'
 
 export default function App() {
    return (
     <div>
-       <Accordian data={questions} />
+       <Accordion data={questions} />
     </div>
   )
 }
